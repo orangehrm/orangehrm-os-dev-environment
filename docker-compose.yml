@@ -4,7 +4,7 @@ services:
   nginx:
     image: samanthajayasinghe/php-dev-env-nginx
     ports:
-      - "81:80"
+      - "80:80"
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
     networks:
