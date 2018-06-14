@@ -4,7 +4,7 @@ services:
   nginx:
     image: samanthajayasinghe/php-dev-env-nginx
     ports:
-      - "80:80"
+      - "${NGINX_PORT}:80"
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
     networks:
@@ -57,7 +57,7 @@ services:
   mysql57:
     image: mysql:5.7
     ports:
-      - "3321:3306"
+      - "${MYSQL_57_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -70,7 +70,7 @@ services:
   mysql56:
     image: mysql:5.6
     ports:
-      - "3322:3306"
+      - "${MYSQL_56_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -83,7 +83,7 @@ services:
   mysql55:
     image: mysql:5.5
     ports:
-      - "3324:3306"
+      - "${MYSQL_55_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -96,7 +96,7 @@ services:
   mariadb55:
     image: mariadb:5.5
     ports:
-      - "3331:3306"
+      - "${MARIADB_55_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -110,7 +110,7 @@ services:
   mariadb100:
     image: mariadb:10.0
     ports:
-      - "3336:3306"
+      - "${MARIADB_100_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -124,7 +124,7 @@ services:
   mariadb101:
     image: mariadb:10.1
     ports:
-      - "3333:3306"
+      - "${MARIADB_101_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -138,7 +138,7 @@ services:
   mariadb102:
     image: mariadb:10.2
     ports:
-      - "3334:3306"
+      - "${MARIADB_102_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -152,7 +152,7 @@ services:
   mariadb103:
     image: mariadb:10.3
     ports:
-      - "3335:3306"
+      - "${MARIADB_103_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -169,7 +169,7 @@ services:
       - phpmyadmin-data:/var/lib/phpmyadminos
 
     ports:
-      - "9082:80"
+      - "${PHPMYADMIN_PORT}:80"
     environment:
       PMA_HOSTS: mysql55,mysql56,mysql57,mariadb55,mariadb100,mariadb101,mariadb102.mariadb103
     networks:
