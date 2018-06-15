@@ -4,7 +4,7 @@ services:
   nginx:
     image: samanthajayasinghe/php-dev-env-nginx
     ports:
-      - "80:80"
+      - "${NGINX_PORT}:80"
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
     networks:
@@ -54,38 +54,142 @@ services:
      networks:
        - php-dev
 
-  mysql:
+  mysql57:
     image: mysql:5.7
     ports:
-      - "3306:3306"
+      - "${MYSQL_57_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql-data-56:/var/lib/mysql/57
     depends_on:
           - nginx
     networks:
       - php-dev
 
-  mariadb:
-    image: mariadb:10.2
+  mysql56:
+    image: mysql:5.6
     ports:
-      - "3307:3306"
+      - "${MYSQL_56_PORT}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data:/var/lib/mysql
+      - mysql-data-57:/var/lib/mysql/56
+    depends_on:
+          - nginx
+    networks:
+      - php-dev
+
+  mysql55:
+    image: mysql:5.5
+    ports:
+      - "${MYSQL_55_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-55:/var/lib/mysql/55
+    depends_on:
+          - nginx
+    networks:
+      - php-dev
+
+  mariadb55:
+    image: mariadb:5.5
+    ports:
+      - "${MARIADB_55_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-55:/var/lib/mariadb/55
     depends_on:
       - nginx
     mem_swappiness: 1
     networks:
       - php-dev
 
+  mariadb100:
+    image: mariadb:10.0
+    ports:
+      - "${MARIADB_100_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-100:/var/lib/mariadb/100
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+
+  mariadb101:
+    image: mariadb:10.1
+    ports:
+      - "${MARIADB_101_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-102:/var/lib/mariadb/101
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+
+  mariadb102:
+    image: mariadb:10.2
+    ports:
+      - "${MARIADB_102_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-102:/var/lib/mariadb/102
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+
+  mariadb103:
+    image: mariadb:10.3
+    ports:
+      - "${MARIADB_103_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-103:/var/lib/mariadb/103
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    volumes:
+      - phpmyadmin-data:/var/lib/phpmyadminos
+
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
+    environment:
+      PMA_HOSTS: mysql55,mysql56,mysql57,mariadb55,mariadb100,mariadb101,mariadb102.mariadb103
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_phpmyadmin
+
 volumes:
     pgsql-data:
-    mysql-data:
+    mysql-data-55:
+    mysql-data-56:
+    mysql-data-57:
+    mariadb-data-55:
+    mariadb-data-100:
+    mariadb-data-101:
+    mariadb-data-102:
+    mariadb-data-103:
     web-data:
     mariadb-data:
+    phpmyadmin-data:
 
 networks:
   php-dev:
