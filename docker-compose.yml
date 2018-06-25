@@ -59,7 +59,7 @@ services:
     ports:
       - "${APACHE_PORT}:80"
     volumes:
-      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - ${LOCAL_SRC}:${APACHE_DOC_ROOT}
     networks:
        - php-dev
 
