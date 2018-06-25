@@ -1,6 +1,7 @@
 FROM php:7.2-fpm
 
 COPY config/php.ini /usr/local/etc/php/
+COPY config/fpm.conf /usr/local/etc/php-fpm.d/max-pool.conf
 
 RUN apt-get update && apt-get install -y \
         apt-transport-https \
