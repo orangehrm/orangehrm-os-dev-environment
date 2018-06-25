@@ -54,6 +54,15 @@ services:
      networks:
        - php-dev
 
+  php-apache-7.2:
+     image: samanthajayasinghe/php-dev-env-php72-apache
+    ports:
+      - "${APACHE_PORT}:80"
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+    networks:
+       - php-dev
+
   mysql57:
     image: mysql:5.7
     ports:

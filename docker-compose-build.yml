@@ -15,3 +15,6 @@ services:
 
   php-7.2:
     build: ./php/php72
+
+  php72-apache:
+    build: ./apache/php72
