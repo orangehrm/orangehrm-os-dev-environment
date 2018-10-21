@@ -148,7 +148,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-102:/var/lib/mariadb/101
+      - mariadb-data-101:/var/lib/mariadb/101
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -204,7 +204,6 @@ services:
     container_name: os_dev_phpmyadmin
 
 volumes:
-    pgsql-data:
     mysql-data-55:
     mysql-data-56:
     mysql-data-57:
@@ -213,8 +212,6 @@ volumes:
     mariadb-data-101:
     mariadb-data-102:
     mariadb-data-103:
-    web-data:
-    mariadb-data:
     phpmyadmin-data:
 
 networks:
