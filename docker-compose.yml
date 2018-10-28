@@ -71,7 +71,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data-56:/var/lib/mysql/57
+      - mysql-data-57:/var/lib/mysql/
     depends_on:
           - nginx
     networks:
@@ -86,7 +86,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data-57:/var/lib/mysql/56
+      - mysql-data-56:/var/lib/mysql/
     depends_on:
           - nginx
     networks:
@@ -101,7 +101,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data-55:/var/lib/mysql/55
+      - mysql-data-55:/var/lib/mysql/
     depends_on:
           - nginx
     networks:
