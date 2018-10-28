@@ -23,7 +23,7 @@ services:
     networks:
       - php-dev
     restart: always
-    container_name: os_dev_php-5.6
+    container_name: os_dev_php56
 
   php-7.0:
     image: samanthajayasinghe/php-dev-env-php70
@@ -36,7 +36,7 @@ services:
     networks:
       - php-dev
     restart: always
-    container_name: os_dev_php-7.0
+    container_name: os_dev_php70
 
   php-7.1:
     image: samanthajayasinghe/php-dev-env-php71
@@ -49,7 +49,7 @@ services:
     networks:
       - php-dev
     restart: always
-    container_name: os_dev_php-7.1
+    container_name: os_dev_php71
 
   php-7.2:
      image: samanthajayasinghe/php-dev-env-php72
@@ -62,7 +62,7 @@ services:
      networks:
        - php-dev
      restart: always
-     container_name: os_dev_php-7.2
+     container_name: os_dev_php72
 
   mysql57:
     image: mysql:5.7
