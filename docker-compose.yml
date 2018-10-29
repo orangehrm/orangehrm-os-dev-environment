@@ -9,6 +9,8 @@ services:
       - ${LOCAL_SRC}:${REMOTE_SRC}
     networks:
        - php-dev
+    restart: always
+    container_name: os_dev_nginx
 
   php-5.6:
     image: samanthajayasinghe/php-dev-env-php56
@@ -20,6 +22,8 @@ services:
       - $HOME/.bash_history:/root/.bash_history
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_php56
 
   php-7.0:
     image: samanthajayasinghe/php-dev-env-php70
@@ -31,6 +35,8 @@ services:
       - $HOME/.bash_history:/root/.bash_history
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_php70
 
   php-7.1:
     image: samanthajayasinghe/php-dev-env-php71
@@ -42,6 +48,8 @@ services:
       - $HOME/.bash_history:/root/.bash_history
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_php71
 
   php-7.2:
      image: samanthajayasinghe/php-dev-env-php72
@@ -53,6 +61,8 @@ services:
        - $HOME/.bash_history:/root/.bash_history
      networks:
        - php-dev
+     restart: always
+     container_name: os_dev_php72
 
   mysql57:
     image: mysql:5.7
@@ -61,11 +71,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data-56:/var/lib/mysql/57
+      - mysql-data-57:/var/lib/mysql/
     depends_on:
           - nginx
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mysql57
 
   mysql56:
     image: mysql:5.6
@@ -74,11 +86,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data-57:/var/lib/mysql/56
+      - mysql-data-56:/var/lib/mysql/
     depends_on:
           - nginx
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mysql56
 
   mysql55:
     image: mysql:5.5
@@ -87,11 +101,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mysql-data-55:/var/lib/mysql/55
+      - mysql-data-55:/var/lib/mysql/
     depends_on:
           - nginx
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mysql55
 
   mariadb55:
     image: mariadb:5.5
@@ -106,6 +122,8 @@ services:
     mem_swappiness: 1
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mariadb55
 
   mariadb100:
     image: mariadb:10.0
@@ -120,6 +138,8 @@ services:
     mem_swappiness: 1
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mariadb100
 
   mariadb101:
     image: mariadb:10.1
@@ -128,12 +148,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-102:/var/lib/mariadb/101
+      - mariadb-data-101:/var/lib/mariadb/101
     depends_on:
       - nginx
     mem_swappiness: 1
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mariadb101
 
   mariadb102:
     image: mariadb:10.2
@@ -148,6 +170,8 @@ services:
     mem_swappiness: 1
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mariadb102
 
   mariadb103:
     image: mariadb:10.3
@@ -162,6 +186,8 @@ services:
     mem_swappiness: 1
     networks:
       - php-dev
+    restart: always
+    container_name: os_dev_mariadb103
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -178,7 +204,6 @@ services:
     container_name: os_dev_phpmyadmin
 
 volumes:
-    pgsql-data:
     mysql-data-55:
     mysql-data-56:
     mysql-data-57:
@@ -187,8 +212,6 @@ volumes:
     mariadb-data-101:
     mariadb-data-102:
     mariadb-data-103:
-    web-data:
-    mariadb-data:
     phpmyadmin-data:
 
 networks:
