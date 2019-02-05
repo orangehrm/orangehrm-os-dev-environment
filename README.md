@@ -6,7 +6,7 @@ This project will facilitate inbuilt development environment for developers and 
  - Docker
  - Docker compose 
  - Nginx
- - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2
+ - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3
 
 ### Installation:
  1. Clone this project
@@ -30,6 +30,7 @@ docker-compose stop
 
 | PHP Version  | Host | 
 | ------------- | ------------- |
+| PHP 7.3  | http://php73  | 
 | PHP 7.2  | http://php72  | 
 | PHP 7.1  | http://php71  | 
 | PHP 7.0  | http://php70  | 
@@ -55,27 +56,41 @@ docker-compose exec mariadb -u root -p"root"
 
 #### How to browse Orangehrm
 
-- php 5.6 : http://php56/
-- php 7.0 : http://php70/
-- php 7.1 : http://php71/
-- php 7.2 : http://php72/
+- php 5.6 : http://php56:{PORT}/
+- php 7.0 : http://php70:{PORT}/
+- php 7.1 : http://php71:{PORT}/
+- php 7.2 : http://php72:{PORT}/
+- php 7.3 : http://php73:{PORT}/
+__Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
 
 #### How to execute unit tests
+ __Execute Test PHP 7.3:__
+ ```bash
+ docker-compose exec os_dev_php73 /bin/bash
+ phpunit
+ ```
+
  __Execute Test PHP 7.2:__
  ```bash
- docker-compose exec php-7.2 /bin/bash
+ docker-compose exec os_dev_php72 /bin/bash
  phpunit
  ```
  
   __Execute Test PHP 7.1:__
   ```bash
-  docker-compose exec php-7.1 /bin/bash
+  docker-compose exec os_dev_php71 /bin/bash
   phpunit
   ```
   
   __Execute Test PHP 7.0:__
   ```bash
-   docker-compose exec php-7.0 /bin/bash
+   docker-compose exec os_dev_php70 /bin/bash
+   phpunit
+  ```
+
+  __Execute Test PHP 5.6:__
+  ```bash
+   docker-compose exec os_dev_php56 /bin/bash
    phpunit
   ```
 #### Build Images
