@@ -14,7 +14,7 @@ This project will facilitate inbuilt development environment for developers and 
  1. update /etc/hosts file with following line
  __Example:__
  ```bash
- 127.0.0.1	php56 php70 php71 php72
+ 127.0.0.1	php56 php70 php71 php72 php73
  ```
 #### How to up/down containers 
 Up all containers
