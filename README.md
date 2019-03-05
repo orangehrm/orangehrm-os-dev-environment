@@ -21,6 +21,11 @@ Up all containers
 ```bash
 docker-compose up -d
 ```
+
+Up only development containers 
+```bash
+docker-compose up -d php-7.2 mysql57
+```
  
 Down all container
 ```bash
