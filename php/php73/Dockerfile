@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 COPY config/php.ini /usr/local/etc/php/
 
@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
 		libxml2-dev \
 		libicu-dev \
 		libpq-dev \
+		libzip-dev \
 		locales \
 		gnupg2 \
 		vim \
@@ -28,16 +29,12 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+# Install xdebug-beta because https://bugs.xdebug.org/view.php?id=1584 issue
+RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get install -y tzdata
-
-# Install composer globally
-RUN echo "Install composer globally"
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
 RUN echo "${TZ}" > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata
