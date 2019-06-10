@@ -35,6 +35,7 @@ RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get install -y tzdata
+RUN apt install -y mysql-client
 
 RUN echo "${TZ}" > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata

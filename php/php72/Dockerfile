@@ -33,6 +33,7 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && apt-get install -y tzdata
+RUN apt install -y mysql-client
 
 # Install composer globally
 RUN echo "Install composer globally"

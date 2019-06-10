@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
 
 
 RUN apt-get update && apt-get install -y tzdata
+RUN apt install -y mysql-client
 
 # Install composer globally
 RUN echo "Install composer globally"
