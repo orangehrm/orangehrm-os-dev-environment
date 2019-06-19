@@ -1,6 +1,7 @@
 FROM php:7.3-fpm
 
 COPY config/php.ini /usr/local/etc/php/
+COPY files/ioncube_loader_lin_7.3.so /usr/local/lib/php/extensions/
 
 RUN apt-get update && apt-get install -y \
         apt-transport-https \
@@ -12,6 +13,7 @@ RUN apt-get update && apt-get install -y \
 		libicu-dev \
 		libpq-dev \
 		libzip-dev \
+		libldap2-dev \
 		locales \
 		gnupg2 \
 		vim \
@@ -26,7 +28,9 @@ RUN apt-get update && apt-get install -y \
 	    pdo_mysql \
 	    pgsql \
 	    mysqli \
+	    ldap \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
 # Install xdebug-beta because https://bugs.xdebug.org/view.php?id=1584 issue
