@@ -203,6 +203,22 @@ services:
     restart: always
     container_name: os_dev_mariadb103
 
+  mariadb104:
+    image: mariadb:10.4
+    ports:
+      - "${MARIADB_104_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-104:/var/lib/mariadb/104
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb104
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     volumes:
@@ -226,6 +242,7 @@ volumes:
     mariadb-data-101:
     mariadb-data-102:
     mariadb-data-103:
+    mariadb-data-104:
     phpmyadmin-data:
 
 networks:
