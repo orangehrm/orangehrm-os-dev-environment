@@ -1,6 +1,7 @@
 FROM php:7.1-fpm
 
 COPY config/php.ini /usr/local/etc/php/
+COPY files/ioncube_loader_lin_7.1.so /usr/local/lib/php/extensions/
 
 RUN apt-get update && apt-get install -y \
         apt-transport-https \
