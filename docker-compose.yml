@@ -78,6 +78,19 @@ services:
      restart: always
      container_name: os_dev_php73
 
+  php-7.4:
+    image: samanthajayasinghe/ohrm-php74
+    working_dir: ${REMOTE_SRC}
+    environment:
+      HIST_FILE: /root/.bash_history
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_php74
+
   mysql57:
     image: mysql:5.7
     ports:
