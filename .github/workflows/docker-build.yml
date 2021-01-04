@@ -1,0 +1,17 @@
+name: Docker build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run build
+        run: |
+          cat .env.dist > .env
+          docker-compose -f docker-compose.yml -f docker-compose-build.yml build

@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
 		vim \
 		git \
 		cron \
+		tzdata \
+		default-mysql-client \
 	&& docker-php-ext-install -j$(nproc) xmlrpc \
 	    zip \
 	    intl \
@@ -29,7 +31,8 @@ RUN apt-get update && apt-get install -y \
 	    pgsql \
 	    mysqli \
 	    ldap \
-	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	# https://github.com/docker-library/php/issues/912
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
@@ -37,9 +40,6 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-RUN apt-get update && apt-get install -y tzdata
-RUN apt-get update && apt-get install -y mariadb-client && rm -rf /var/lib/apt
 
 RUN echo "${TZ}" > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata

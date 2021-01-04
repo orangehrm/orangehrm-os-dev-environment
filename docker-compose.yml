@@ -143,7 +143,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-55:/var/lib/mariadb/55
+      - mariadb-data-55:/var/lib/mysql/
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -159,7 +159,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-100:/var/lib/mariadb/100
+      - mariadb-data-100:/var/lib/mysql/
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -175,7 +175,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-101:/var/lib/mariadb/101
+      - mariadb-data-101:/var/lib/mysql/
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -191,7 +191,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-102:/var/lib/mariadb/102
+      - mariadb-data-102:/var/lib/mysql/
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -207,7 +207,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-103:/var/lib/mariadb/103
+      - mariadb-data-103:/var/lib/mysql/
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -223,7 +223,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
-      - mariadb-data-104:/var/lib/mariadb/104
+      - mariadb-data-104:/var/lib/mysql/
     depends_on:
       - nginx
     mem_swappiness: 1
@@ -232,15 +232,28 @@ services:
     restart: always
     container_name: os_dev_mariadb104
 
+  mariadb105:
+    image: mariadb:10.5
+    ports:
+      - "${MARIADB_105_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-105:/var/lib/mysql/
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb105
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    volumes:
-      - phpmyadmin-data:/var/lib/phpmyadminos
-
     ports:
       - "${PHPMYADMIN_PORT}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105
     networks:
       - php-dev
     restart: always
@@ -256,7 +269,7 @@ volumes:
     mariadb-data-102:
     mariadb-data-103:
     mariadb-data-104:
-    phpmyadmin-data:
+    mariadb-data-105:
 
 networks:
   php-dev:

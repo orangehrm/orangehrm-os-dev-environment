@@ -35,7 +35,7 @@ docker-compose stop
 
 | PHP Version  | Host | 
 | ------------- | ------------- |
-| PHP 7.3  | http://php74  | 
+| PHP 7.4  | http://php74  |
 | PHP 7.3  | http://php73  | 
 | PHP 7.2  | http://php72  | 
 | PHP 7.1  | http://php71  | 
@@ -46,12 +46,16 @@ docker-compose stop
 
 | DB  | Host |User  | Password |
 | --- | ---- |---- | ------- |
-| Mysql57  | mysql57  |root  | root  |
-| mysql56  | mysql56  |root  | root  |
-| mysql55  | mysql55  |root  | root  |
-| mariadb55  | mariadb55  |root  | root  |
-| mariadb100  | mariadb100  |root  | root  |
-| mariadb101  | mariadb101  |root  | root  |
+| MySQL 5.7  | mysql57  |root  | root  |
+| MySQL 5.6  | mysql56  |root  | root  |
+| MySQL 5.5  | mysql55  |root  | root  |
+| MariaDB 5.5  | mariadb55  |root  | root  |
+| MariaDB 10.0  | mariadb100  |root  | root  |
+| MariaDB 10.1  | mariadb101  |root  | root  |
+| MariaDB 10.2  | mariadb102  |root  | root  |
+| MariaDB 10.3  | mariadb103  |root  | root  |
+| MariaDB 10.4  | mariadb104  |root  | root  |
+| MariaDB 10.5  | mariadb105  |root  | root  |
 
 
 To use the command line clients provided by the containers you can use the following commands:
@@ -71,6 +75,8 @@ docker-compose exec mariadb -u root -p"root"
 - php 7.1 : http://php71:{PORT}/
 - php 7.2 : http://php72:{PORT}/
 - php 7.3 : http://php73:{PORT}/
+- php 7.4 : http://php74:{PORT}/
+
 __Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
 
 #### How to execute unit tests
