@@ -31,7 +31,8 @@ RUN apt-get update && apt-get install -y \
 	    pgsql \
 	    mysqli \
 	    ldap \
-	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	# https://github.com/docker-library/php/issues/912
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 

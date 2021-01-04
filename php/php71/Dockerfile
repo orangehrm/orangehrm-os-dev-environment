@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN pecl install xdebug-2.6.0 && docker-php-ext-enable xdebug
 
 # Install composer globally
 RUN echo "Install composer globally"
