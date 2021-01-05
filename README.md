@@ -1,4 +1,7 @@
 ## Orangehrm open source Development environment
+
+![Docker build](https://github.com/orangehrm/orangehrm-os-dev-environment/workflows/Docker%20build/badge.svg)
+
 ### Introduction
 This project will facilitate inbuilt development environment for developers and testers 
 
