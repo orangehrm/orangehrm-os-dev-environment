@@ -149,6 +149,21 @@ services:
     restart: always
     container_name: os_dev_mysql55
 
+  mysql80:
+    image: mysql:8.0
+    ports:
+      - "${MYSQL_80_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-80:/var/lib/mysql/
+    depends_on:
+      - nginx
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql80
+
   mariadb55:
     image: mariadb:5.5
     ports:
@@ -276,6 +291,7 @@ volumes:
     mysql-data-55:
     mysql-data-56:
     mysql-data-57:
+    mysql-data-80:
     mariadb-data-55:
     mariadb-data-100:
     mariadb-data-101:

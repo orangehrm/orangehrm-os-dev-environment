@@ -53,6 +53,7 @@ docker-compose stop
 | MySQL 5.5  | mysql55  |root  | root  |
 | MySQL 5.6  | mysql56  |root  | root  |
 | MySQL 5.7  | mysql57  |root  | root  |
+| MySQL 8.0  | mysql80  |root  | root  |
 | MariaDB 5.5  | mariadb55  |root  | root  |
 | MariaDB 10.0  | mariadb100  |root  | root  |
 | MariaDB 10.1  | mariadb101  |root  | root  |
