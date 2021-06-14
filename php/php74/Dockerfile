@@ -41,5 +41,13 @@ RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+COPY --from=node:12 /usr/local/bin/node /usr/bin/node
+
+ENV YARN_VERSION 1.22.5
+COPY --from=node:12 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
+RUN ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
+	&& node --version \
+	&& yarn --version
+
 RUN echo "${TZ}" > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata
