@@ -9,7 +9,7 @@ This project will facilitate inbuilt development environment for developers and 
  - Docker
  - Docker compose 
  - Nginx
- - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0
+ - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0, PHP 8.1
 
 ### Installation:
  1. Clone this project
@@ -17,7 +17,7 @@ This project will facilitate inbuilt development environment for developers and 
  1. update /etc/hosts file with following line
  __Example:__
  ```bash
- 127.0.0.1	php56 php70 php71 php72 php73 php74 php80
+ 127.0.0.1	php56 php70 php71 php72 php73 php74 php80 php81
  ```
 #### How to up/down containers 
 Up all containers
@@ -38,6 +38,7 @@ docker-compose stop
 
 | PHP Version  | Host | 
 | ------------- | ------------- |
+| PHP 8.1  | http://php81  |
 | PHP 8.0  | http://php80  |
 | PHP 7.4  | http://php74  |
 | PHP 7.3  | http://php73  | 
@@ -82,6 +83,7 @@ docker-compose exec mariadb -u root -p"root"
 - php 7.3 : http://php73:{PORT}/
 - php 7.4 : http://php74:{PORT}/
 - php 8.0 : http://php80:{PORT}/
+- php 8.0 : http://php81:{PORT}/
 
 __Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
 

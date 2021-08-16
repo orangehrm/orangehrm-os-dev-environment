@@ -24,3 +24,6 @@ services:
 
   php-8.0:
     build: ./php/php80
+
+  php-8.1:
+    build: ./php/php81
