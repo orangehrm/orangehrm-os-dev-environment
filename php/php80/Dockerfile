@@ -40,9 +40,9 @@ RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY --from=node:14 /usr/local/bin/node /usr/bin/node
+COPY --from=node:14.18.1 /usr/local/bin/node /usr/bin/node
 
-ENV YARN_VERSION 1.22.5
+ENV YARN_VERSION 1.22.15
 COPY --from=node:14 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
 RUN ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
 	&& node --version \
