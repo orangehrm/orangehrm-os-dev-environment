@@ -289,12 +289,28 @@ services:
     restart: always
     container_name: os_dev_mariadb105
 
+  mariadb106:
+    image: mariadb:10.6
+    ports:
+      - "${MARIADB_106_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-106:/var/lib/mysql/
+    depends_on:
+      - nginx
+    mem_swappiness: 1
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb106
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "${PHPMYADMIN_PORT}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106
     networks:
       - php-dev
     restart: always
@@ -312,6 +328,7 @@ volumes:
     mariadb-data-103:
     mariadb-data-104:
     mariadb-data-105:
+    mariadb-data-106:
 
 networks:
   php-dev:
