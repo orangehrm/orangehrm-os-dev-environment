@@ -44,7 +44,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY --from=node:12.22.7 /usr/local/bin/node /usr/bin/node
 
 ENV YARN_VERSION 1.22.15
-COPY --from=node:12 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
+COPY --from=node:12.22.7 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
 RUN ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
 	&& node --version \
 	&& yarn --version
