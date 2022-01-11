@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+	&& docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

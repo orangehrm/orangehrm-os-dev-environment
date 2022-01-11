@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+	&& docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
 # Install xdebug-beta because https://bugs.xdebug.org/view.php?id=1584 issue
