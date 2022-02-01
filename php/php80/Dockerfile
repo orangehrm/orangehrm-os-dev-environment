@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+	&& docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
 # Install xdebug-beta because https://bugs.xdebug.org/view.php?id=1584 issue
@@ -43,7 +43,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY --from=node:14.18.1 /usr/local/bin/node /usr/bin/node
 
 ENV YARN_VERSION 1.22.15
-COPY --from=node:14 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
+COPY --from=node:14.18.1 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
 RUN ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
 	&& node --version \
 	&& yarn --version
