@@ -63,6 +63,7 @@ docker-compose stop
 | MariaDB 10.4  | mariadb104  |root  | root  |
 | MariaDB 10.5  | mariadb105  |root  | root  |
 | MariaDB 10.6  | mariadb106  |root  | root  |
+| MariaDB 10.7  | mariadb107  |root  | root  |
 
 
 To use the command line clients provided by the containers you can use the following commands:
@@ -84,46 +85,38 @@ docker-compose exec mariadb -u root -p"root"
 - php 7.3 : http://php73:{PORT}/
 - php 7.4 : http://php74:{PORT}/
 - php 8.0 : http://php80:{PORT}/
-- php 8.0 : http://php81:{PORT}/
+- php 8.1 : http://php81:{PORT}/
 
 __Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
 
-#### How to execute unit tests
- __Execute Test PHP 7.4:__
- ```bash
- docker-compose exec os_dev_php74 /bin/bash
- symfony/lib# vendor/bin/phpunit ../test/PluginAllTests.php
- ```
+#### Run commands in a running container
+__Execute in PHP 7.4:__
+```bash
+docker-compose exec php-7.4 bash
+# OR
+docker exec -it os_dev_php74 bash
+```
 
- __Execute Test PHP 7.3:__
- ```bash
- docker-compose exec os_dev_php73 /bin/bash
- symfony/lib# vendor/bin/phpunit ../test/PluginAllTests.php
- ```
+__Execute in PHP 7.3:__
+```bash
+docker exec -it os_dev_php73 bash
+```
 
- __Execute Test PHP 7.2:__
- ```bash
- docker-compose exec os_dev_php72 /bin/bash
- symfony/lib# vendor/bin/phpunit ../test/PluginAllTests.php
- ```
- 
-  __Execute Test PHP 7.1:__
-  ```bash
-  docker-compose exec os_dev_php71 /bin/bash
-  symfony/lib# vendor/bin/phpunit ../test/PluginAllTests.php
-  ```
-  
-  __Execute Test PHP 7.0:__
-  ```bash
-   docker-compose exec os_dev_php70 /bin/bash
-   symfony/lib# vendor/bin/phpunit ../test/PluginAllTests.php
-  ```
+__Execute in PHP 7.2:__
+```bash
+docker exec -it os_dev_php72 bash
+```
 
-  __Execute Test PHP 5.6:__
-  ```bash
-   docker-compose exec os_dev_php56 /bin/bash
-   phpunit
-  ```
+__Execute in PHP 7.1:__
+```bash
+docker exec -it os_dev_php71 bash
+```
+
+__Execute in PHP 7.0:__
+```bash
+docker exec -it os_dev_php70 bash
+```
+
 #### Build Images
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-build.yml build nginx
