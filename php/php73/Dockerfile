@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
 		libicu-dev \
 		libpq-dev \
 		libzip-dev \
+		libldap-common \
 		libldap2-dev \
 		locales \
 		gnupg2 \
