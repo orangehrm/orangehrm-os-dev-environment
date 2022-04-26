@@ -40,14 +40,13 @@ RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY --from=node:14.18.1 /usr/local/bin/node /usr/bin/node
-
-ENV YARN_VERSION 1.22.15
-COPY --from=node:14.18.1 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
-RUN ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
+RUN cd ~ \
+	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+	&& . $HOME/.nvm/nvm.sh \
+	&& nvm install 14.18 \
+	&& npm install --global yarn \
 	&& node --version \
 	&& yarn --version
-
 
 RUN echo "${TZ}" > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata
