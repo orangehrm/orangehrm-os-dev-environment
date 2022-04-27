@@ -40,6 +40,8 @@ RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+SHELL ["/bin/bash", "--login", "-c"]
+
 RUN cd ~ \
 	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
 	&& . $HOME/.nvm/nvm.sh \
