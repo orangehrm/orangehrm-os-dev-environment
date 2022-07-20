@@ -36,8 +36,7 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-# Install xdebug-beta because https://bugs.xdebug.org/view.php?id=1584 issue
-RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
