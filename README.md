@@ -64,6 +64,8 @@ docker-compose stop
 | MariaDB 10.5  | mariadb105  |root  | root  |
 | MariaDB 10.6  | mariadb106  |root  | root  |
 | MariaDB 10.7  | mariadb107  |root  | root  |
+| MariaDB 10.8  | mariadb108  |root  | root  |
+| MariaDB 10.9  | mariadb109  |root  | root  |
 
 
 To use the command line clients provided by the containers you can use the following commands:
