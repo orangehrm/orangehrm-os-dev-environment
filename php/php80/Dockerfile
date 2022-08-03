@@ -39,7 +39,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-ENV NODE_VERSION 14.18
+ENV NODE_VERSION 16.16
 
 RUN cd ~ \
 	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
