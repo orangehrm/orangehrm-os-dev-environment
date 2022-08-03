@@ -27,7 +27,6 @@ RUN apt-get update && apt-get install -y \
 	    soap \
 	    opcache \
 	    pdo_mysql \
-	    pgsql \
 	    mysqli \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
