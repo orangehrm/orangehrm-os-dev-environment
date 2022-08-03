@@ -1,4 +1,4 @@
-FROM nginx:1.13
+FROM nginx:1.20
 
 COPY config/orangehrm.conf /etc/nginx/conf.d/default.conf
 COPY config/server.conf /etc/nginx/orangehrm-server.conf
