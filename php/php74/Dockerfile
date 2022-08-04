@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
 		libpng-dev \
 		libxml2-dev \
 		libicu-dev \
-		libpq-dev \
 		libzip-dev \
+		libldap-common \
 		libldap2-dev \
 		locales \
 		gnupg2 \
@@ -26,9 +26,7 @@ RUN apt-get update && apt-get install -y \
 	    intl \
 	    soap \
 	    opcache \
-	    pdo_pgsql \
 	    pdo_mysql \
-	    pgsql \
 	    mysqli \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
@@ -40,11 +38,19 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY --from=node:12.22.7 /usr/local/bin/node /usr/bin/node
+SHELL ["/bin/bash", "--login", "-c"]
 
-ENV YARN_VERSION 1.22.15
-COPY --from=node:12.22.7 /opt/yarn-v$YARN_VERSION/ /opt/yarn-v$YARN_VERSION/
-RUN ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
+ENV NODE_VERSION 14.20
+
+RUN cd ~ \
+	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+	&& . $HOME/.nvm/nvm.sh \
+	&& nvm install $NODE_VERSION \
+	&& nvm alias default $NODE_VERSION \
+    && nvm use default \
+	&& npm install --global yarn
+
+RUN nvm -v \
 	&& node --version \
 	&& yarn --version
 

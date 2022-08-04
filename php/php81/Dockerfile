@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
 		libpng-dev \
 		libxml2-dev \
 		libicu-dev \
-		libpq-dev \
 		libzip-dev \
+		libldap-common \
 		libldap2-dev \
 		locales \
 		gnupg2 \
@@ -25,9 +25,7 @@ RUN apt-get update && apt-get install -y \
 	    intl \
 	    soap \
 	    opcache \
-	    pdo_pgsql \
 	    pdo_mysql \
-	    pgsql \
 	    mysqli \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
@@ -39,11 +37,17 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 SHELL ["/bin/bash", "--login", "-c"]
 
+ENV NODE_VERSION 18.7
+
 RUN cd ~ \
 	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
 	&& . $HOME/.nvm/nvm.sh \
-	&& nvm install 16.14 \
-	&& npm install --global yarn \
+	&& nvm install $NODE_VERSION \
+	&& nvm alias default $NODE_VERSION \
+    && nvm use default \
+	&& npm install --global yarn
+
+RUN nvm -v \
 	&& node --version \
 	&& yarn --version
 

@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
 		libpng-dev \
 		libxml2-dev \
 		libicu-dev \
-		libpq-dev \
 		libzip-dev \
 		libldap-common \
 		libldap2-dev \
@@ -27,17 +26,14 @@ RUN apt-get update && apt-get install -y \
 	    intl \
 	    soap \
 	    opcache \
-	    pdo_pgsql \
 	    pdo_mysql \
-	    pgsql \
 	    mysqli \
 	    ldap \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-# Install xdebug-beta because https://bugs.xdebug.org/view.php?id=1584 issue
-RUN pecl install xdebug-beta && docker-php-ext-enable xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
