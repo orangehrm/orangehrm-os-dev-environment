@@ -364,6 +364,25 @@ services:
     restart: always
     container_name: os_dev_phpmyadmin
 
+  openldap:
+    image: osixia/openldap:1.5.0
+    hostname: ${LDAP_HOSTNAME}
+    ports:
+      - "${LDAP_PORT}:389"
+      - "${LDAPS_PORT}:636"
+    environment:
+      LDAP_ORGANISATION: ${LDAP_ORGANISATION}
+      LDAP_DOMAIN: ${LDAP_DOMAIN}
+      LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASSWORD}
+      LDAP_CONFIG_PASSWORD: ${LDAP_CONFIG_PASSWORD}
+    volumes:
+      - openldap-data:/var/lib/ldap
+      - openldap-config:/etc/ldap/slapd.d
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_open_ldap
+
 volumes:
     mysql-data-55:
     mysql-data-56:
@@ -380,6 +399,8 @@ volumes:
     mariadb-data-107:
     mariadb-data-108:
     mariadb-data-109:
+    openldap-data:
+    openldap-config:
 
 networks:
   php-dev:
