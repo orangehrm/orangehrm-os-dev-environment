@@ -1,0 +1,84 @@
+version: "2"
+services:
+  php-5.6:
+    image: orangehrm/os-dev:php56
+    build: ./php/php56
+    working_dir: ${REMOTE_SRC}
+    environment:
+      HIST_FILE: /root/.bash_history
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_php56
+
+  php-7.0:
+    image: orangehrm/os-dev:php70
+    build: ./php/php70
+    working_dir: ${REMOTE_SRC}
+    environment:
+      HIST_FILE: /root/.bash_history
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_php70
+
+  php-7.1:
+    image: orangehrm/os-dev:php71
+    build: ./php/php71
+    working_dir: ${REMOTE_SRC}
+    environment:
+      HIST_FILE: /root/.bash_history
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_php71
+
+  php-7.2:
+    image: orangehrm/os-dev:php72
+    build: ./php/php72
+    working_dir: ${REMOTE_SRC}
+    environment:
+      HIST_FILE: /root/.bash_history
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_php72
+
+  php-7.3:
+    image: orangehrm/os-dev:php73
+    build: ./php/php73
+    working_dir: ${REMOTE_SRC}
+    environment:
+      HIST_FILE: /root/.bash_history
+    volumes:
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_php73
+
+networks:
+  php-dev:

@@ -3,21 +3,6 @@ services:
   nginx:
     build: ./server/nginx
 
-  php-5.6:
-    build: ./php/php56
-
-  php-7.0:
-    build: ./php/php70
-
-  php-7.1:
-    build: ./php/php71
-
-  php-7.2:
-    build: ./php/php72
-
-  php-7.3:
-    build: ./php/php73
-
   php-7.4:
     build: ./php/php74
 
