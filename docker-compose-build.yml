@@ -1,6 +1,5 @@
 version: "2"
 services:
-
   nginx:
     build: ./server/nginx
 

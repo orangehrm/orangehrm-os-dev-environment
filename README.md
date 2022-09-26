@@ -1,4 +1,4 @@
-## OrangeHRM Open Source Development environment
+## OrangeHRM Open Source Development Environment
 
 ![Docker build](https://github.com/orangehrm/orangehrm-os-dev-environment/workflows/Docker%20build/badge.svg)
 
