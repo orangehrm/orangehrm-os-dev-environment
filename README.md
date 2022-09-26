@@ -13,14 +13,16 @@ This project will facilitate inbuilt development environment for developers and 
 
 ### Installation:
  1. Clone this project
- 1. Copy the file __.env.dist__ to __.env__ and change (LOCAL_SRC) path to your project path
+ 1. Copy the file __.env.dist__ to __.env__ and change (`LOCAL_SRC`) path to your project path
  1. update /etc/hosts file with following line
  __Example:__
  ```bash
  127.0.0.1	php56 php70 php71 php72 php73 php74 php80 php81 php82
  ```
 
- Read full guide [here](https://github.com/orangehrm/orangehrm-os-dev-environment/wiki/How-to-setup).
+ > Read the full guide [here](https://github.com/orangehrm/orangehrm-os-dev-environment/wiki/How-to-setup).
+ 
+ > Note: All `docker-compose` commands should run inside this project root directory
  
 #### How to up/down containers 
 Up all containers
@@ -46,15 +48,15 @@ docker-compose stop
 
 | PHP Version  | Host | Start command |
 | ------------- | ------------- | ------------- |
-| PHP 8.2  | http://php82  | bash ./scripts/php82 |
-| PHP 8.1  | http://php81  | bash ./scripts/php81 |
-| PHP 8.0  | http://php80  | bash ./scripts/php80 |
-| PHP 7.4  | http://php74  | bash ./scripts/php74 |
-| PHP 7.3  | http://php73  | bash ./scripts/php73 |
-| PHP 7.2  | http://php72  | bash ./scripts/php72 |
-| PHP 7.1  | http://php71  | bash ./scripts/php71 |
-| PHP 7.0  | http://php70  | bash ./scripts/php70 |
-| PHP 5.6  | http://php56  | bash ./scripts/php56 |
+| PHP 8.2  | http://php82  | `$ bash ./scripts/php82` |
+| PHP 8.1  | http://php81  | `$ bash ./scripts/php81` |
+| PHP 8.0  | http://php80  | `$ bash ./scripts/php80` |
+| PHP 7.4  | http://php74  | `$ bash ./scripts/php74` |
+| PHP 7.3  | http://php73  | `$ bash ./scripts/php73` |
+| PHP 7.2  | http://php72  | `$ bash ./scripts/php72` |
+| PHP 7.1  | http://php71  | `$ bash ./scripts/php71` |
+| PHP 7.0  | http://php70  | `$ bash ./scripts/php70` |
+| PHP 5.6  | http://php56  | `$ bash ./scripts/php56` |
 
 ### Config & Database
 
@@ -100,7 +102,7 @@ docker-compose exec mariadb55 mysql -u root -p"root"
 - php 7.0 : http://php70:{PORT}/
 - php 5.6 : http://php56:{PORT}/
 
-__Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
+> __Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
 
 #### Run commands in a running container
 __Execute in PHP 7.4:__
