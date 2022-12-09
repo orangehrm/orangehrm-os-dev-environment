@@ -279,9 +279,9 @@ services:
     container_name: os_dev_mariadb109
 
   mariadb1010:
-    image: mariadb:10.10-rc
+    image: mariadb:10.10
     ports:
-      - "${MARIADB_1010_PORT}:3306"
+      - "${MARIADB_1010_PORT:-3342}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
