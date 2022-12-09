@@ -5,13 +5,49 @@ on:
   pull_request:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run build
         run: |
           cat .env.dist > .env
           docker-compose -f docker-compose.yml -f docker-compose-build.yml build
+
+      - name: Up PHP 8.2
+        run: ./scripts/php82
+
+      - name: Up PHP 8.1
+        run: ./scripts/php81
+
+      - name: Up PHP 8.0
+        run: ./scripts/php80
+
+      - name: Up PHP 7.4
+        run: ./scripts/php74
+
+  build-legacy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create env file
+        run: cat .env.dist > .env
+
+      - name: Up PHP 7.3
+        run: ./scripts/php73
+
+      - name: Up PHP 7.2
+        run: ./scripts/php72
+
+      - name: Up PHP 7.1
+        run: ./scripts/php71
+
+      - name: Up PHP 7.0
+        run: ./scripts/php70
+
+      - name: Up PHP 5.6
+        run: ./scripts/php56

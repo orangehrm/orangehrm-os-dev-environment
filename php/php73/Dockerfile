@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure ldap --with-libdir=lib/$(uname -m)-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN pecl install xdebug-3.1.0 && docker-php-ext-enable xdebug
 
 COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
