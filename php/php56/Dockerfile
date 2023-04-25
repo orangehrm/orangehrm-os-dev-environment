@@ -2,6 +2,7 @@ FROM php:5.6-fpm
 
 COPY config/php.ini /usr/local/etc/php/php.ini
 
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
         apt-transport-https \
 		libfreetype6-dev \

@@ -23,10 +23,8 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-install -j$(nproc) \
 	    zip \
 	    intl \
-	    soap \
 	    opcache \
 	    pdo_mysql \
-	    mysqli \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \

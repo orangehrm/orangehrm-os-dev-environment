@@ -3,6 +3,7 @@ FROM php:7.0-fpm
 COPY config/php.ini /usr/local/etc/php/
 COPY files/ioncube_loader_lin_7.0.so /usr/local/lib/php/extensions/
 
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
         apt-transport-https \
 		libfreetype6-dev \
@@ -20,7 +21,6 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-install -j$(nproc) xmlrpc \
 	    zip \
 	    intl \
-	    soap \
 	    opcache \
 	    pdo_pgsql \
 	    pdo_mysql \
