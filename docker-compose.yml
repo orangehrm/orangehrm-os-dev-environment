@@ -132,7 +132,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-55:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -146,7 +145,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-100:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -160,7 +158,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-101:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -174,7 +171,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-102:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -188,7 +184,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-103:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -202,7 +197,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-104:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -216,7 +210,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-105:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -230,7 +223,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-106:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -244,7 +236,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-107:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -258,7 +249,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-108:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -272,7 +262,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-109:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
@@ -286,18 +275,30 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mariadb-data-1010:/var/lib/mysql/
-    mem_swappiness: 1
     networks:
       - php-dev
     restart: always
     container_name: os_dev_mariadb1010
+
+  mariadb1011:
+    image: mariadb:10.11
+    ports:
+      - "${MARIADB_1011_PORT:-3343}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-1011:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb1011
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "${PHPMYADMIN_PORT}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011
     networks:
       - php-dev
     restart: always
@@ -320,6 +321,7 @@ volumes:
   mariadb-data-108:
   mariadb-data-109:
   mariadb-data-1010:
+  mariadb-data-1011:
 
 networks:
   php-dev:
