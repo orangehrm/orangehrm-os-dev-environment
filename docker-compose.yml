@@ -72,31 +72,20 @@ services:
     restart: always
     container_name: os_dev_php82
 
-  mysql57:
-    image: mysql:5.7
-    ports:
-      - "${MYSQL_57_PORT}:3306"
+  php-8.3:
+    image: orangehrm/os-dev:php83
+    working_dir: ${REMOTE_SRC}
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+      HIST_FILE: /root/.bash_history
     volumes:
-      - mysql-data-57:/var/lib/mysql/
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
     networks:
       - php-dev
     restart: always
-    container_name: os_dev_mysql57
-
-  mysql56:
-    image: mysql:5.6
-    ports:
-      - "${MYSQL_56_PORT}:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
-    volumes:
-      - mysql-data-56:/var/lib/mysql/
-    networks:
-      - php-dev
-    restart: always
-    container_name: os_dev_mysql56
+    container_name: os_dev_php83
 
   mysql55:
     image: mysql:5.5
@@ -111,6 +100,32 @@ services:
     restart: always
     container_name: os_dev_mysql55
 
+  mysql56:
+    image: mysql:5.6
+    ports:
+      - "${MYSQL_56_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-56:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql56
+
+  mysql57:
+    image: mysql:5.7
+    ports:
+      - "${MYSQL_57_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-57:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql57
+
   mysql80:
     image: mysql:8.0
     ports:
@@ -123,6 +138,32 @@ services:
       - php-dev
     restart: always
     container_name: os_dev_mysql80
+
+  mysql81:
+    image: mysql:8.1
+    ports:
+      - "${MYSQL_81_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-81:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql81
+
+  mysql82:
+    image: mysql:8.2
+    ports:
+      - "${MYSQL_82_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-82:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql82
 
   mariadb55:
     image: mariadb:5.5
@@ -293,12 +334,51 @@ services:
     restart: always
     container_name: os_dev_mariadb1011
 
+  mariadb110:
+    image: mariadb:11.0
+    ports:
+      - "${MARIADB_110_PORT:-3344}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-110:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb110
+
+  mariadb111:
+    image: mariadb:11.1
+    ports:
+      - "${MARIADB_111_PORT:-3345}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-111:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb111
+
+  mariadb112:
+    image: mariadb:11.2
+    ports:
+      - "${MARIADB_112_PORT:-3346}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-112:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb112
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "${PHPMYADMIN_PORT}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112
     networks:
       - php-dev
     restart: always
@@ -309,6 +389,8 @@ volumes:
   mysql-data-56:
   mysql-data-57:
   mysql-data-80:
+  mysql-data-81:
+  mysql-data-82:
   mariadb-data-55:
   mariadb-data-100:
   mariadb-data-101:
@@ -322,6 +404,9 @@ volumes:
   mariadb-data-109:
   mariadb-data-1010:
   mariadb-data-1011:
+  mariadb-data-110:
+  mariadb-data-111:
+  mariadb-data-112:
 
 networks:
   php-dev:
