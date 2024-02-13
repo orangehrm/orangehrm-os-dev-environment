@@ -4,8 +4,8 @@ services:
     image: orangehrm/os-dev:nginx
     build: ./server/nginx
     ports:
-      - "${NGINX_PORT}:80"
-      - "${NGINX_SSL_PORT}:443"
+      - "${NGINX_PORT:-80}:80"
+      - "${NGINX_SSL_PORT:-443}:443"
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
     networks:
@@ -96,7 +96,7 @@ services:
   mysql55:
     image: mysql:5.5
     ports:
-      - "${MYSQL_55_PORT}:3306"
+      - "${MYSQL_55_PORT:-3320}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -109,7 +109,7 @@ services:
   mysql56:
     image: mysql:5.6
     ports:
-      - "${MYSQL_56_PORT}:3306"
+      - "${MYSQL_56_PORT:-3321}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -122,7 +122,7 @@ services:
   mysql57:
     image: mysql:5.7
     ports:
-      - "${MYSQL_57_PORT}:3306"
+      - "${MYSQL_57_PORT:-3322}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -135,7 +135,7 @@ services:
   mysql80:
     image: mysql:8.0
     ports:
-      - "${MYSQL_80_PORT}:3306"
+      - "${MYSQL_80_PORT:-3323}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -148,7 +148,7 @@ services:
   mysql81:
     image: mysql:8.1
     ports:
-      - "${MYSQL_81_PORT}:3306"
+      - "${MYSQL_81_PORT:-3324}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -161,7 +161,7 @@ services:
   mysql82:
     image: mysql:8.2
     ports:
-      - "${MYSQL_82_PORT}:3306"
+      - "${MYSQL_82_PORT:-3325}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -174,7 +174,7 @@ services:
   mariadb55:
     image: mariadb:5.5
     ports:
-      - "${MARIADB_55_PORT}:3306"
+      - "${MARIADB_55_PORT:-3331}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -187,7 +187,7 @@ services:
   mariadb100:
     image: mariadb:10.0
     ports:
-      - "${MARIADB_100_PORT}:3306"
+      - "${MARIADB_100_PORT:-3332}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -200,7 +200,7 @@ services:
   mariadb101:
     image: mariadb:10.1
     ports:
-      - "${MARIADB_101_PORT}:3306"
+      - "${MARIADB_101_PORT:-3333}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -213,7 +213,7 @@ services:
   mariadb102:
     image: mariadb:10.2
     ports:
-      - "${MARIADB_102_PORT}:3306"
+      - "${MARIADB_102_PORT:-3334}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -226,7 +226,7 @@ services:
   mariadb103:
     image: mariadb:10.3
     ports:
-      - "${MARIADB_103_PORT}:3306"
+      - "${MARIADB_103_PORT:-3335}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -239,7 +239,7 @@ services:
   mariadb104:
     image: mariadb:10.4
     ports:
-      - "${MARIADB_104_PORT}:3306"
+      - "${MARIADB_104_PORT:-3336}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -252,7 +252,7 @@ services:
   mariadb105:
     image: mariadb:10.5
     ports:
-      - "${MARIADB_105_PORT}:3306"
+      - "${MARIADB_105_PORT:-3337}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -265,7 +265,7 @@ services:
   mariadb106:
     image: mariadb:10.6
     ports:
-      - "${MARIADB_106_PORT}:3306"
+      - "${MARIADB_106_PORT:-3338}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -278,7 +278,7 @@ services:
   mariadb107:
     image: mariadb:10.7
     ports:
-      - "${MARIADB_107_PORT}:3306"
+      - "${MARIADB_107_PORT:-3339}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -291,7 +291,7 @@ services:
   mariadb108:
     image: mariadb:10.8
     ports:
-      - "${MARIADB_108_PORT}:3306"
+      - "${MARIADB_108_PORT:-3340}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -304,7 +304,7 @@ services:
   mariadb109:
     image: mariadb:10.9
     ports:
-      - "${MARIADB_109_PORT}:3306"
+      - "${MARIADB_109_PORT:-3341}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -382,7 +382,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "${PHPMYADMIN_PORT}:80"
+      - "${PHPMYADMIN_PORT:-9092}:80"
     environment:
       PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112
     networks:
