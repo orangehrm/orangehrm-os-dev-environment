@@ -9,12 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Run build
         run: |
           cat .env.dist > .env
-          docker-compose -f docker-compose.yml -f docker-compose-build.yml build
+          docker-compose build
+
+      - name: Up PHP 8.3
+        run: ./scripts/php83
 
       - name: Up PHP 8.2
         run: ./scripts/php82
@@ -32,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Create env file
         run: cat .env.dist > .env

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-PROJECT_DIR=$(realpath $(dirname $(readlink -f $0))/../)
+source "$(dirname "$(readlink -f "$0")")/config"
 
 if [[ "$(docker images -q orangehrm/os-dev:php72 2>/dev/null)" == "" ]]; then
     printf "Building the image...\n\n"
-    docker-compose -f "$PROJECT_DIR/docker-compose.yml" -f "$PROJECT_DIR/docker-compose-legacy-services.yml" -f "$PROJECT_DIR/docker-compose-build.yml" build php-7.2 nginx
+    docker compose -f "$COMPOSE_FILE" -f "$COMPOSE_LEGACY_FILE" build php-7.2 nginx
 fi
 
-docker-compose -f "$PROJECT_DIR/docker-compose.yml" -f "$PROJECT_DIR/docker-compose-legacy-services.yml" up -d php-7.2
+docker compose -f "$COMPOSE_FILE" -f "$COMPOSE_LEGACY_FILE" up -d php-7.2

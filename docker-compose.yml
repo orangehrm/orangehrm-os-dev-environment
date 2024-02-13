@@ -2,9 +2,10 @@ version: "3.3"
 services:
   nginx:
     image: orangehrm/os-dev:nginx
+    build: ./server/nginx
     ports:
-      - "${NGINX_PORT}:80"
-      - "${NGINX_SSL_PORT}:443"
+      - "${NGINX_PORT:-80}:80"
+      - "${NGINX_SSL_PORT:-443}:443"
     volumes:
       - ${LOCAL_SRC}:${REMOTE_SRC}
     networks:
@@ -14,6 +15,7 @@ services:
 
   php-7.4:
     image: orangehrm/os-dev:php74
+    build: ./php/php74
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -29,6 +31,7 @@ services:
 
   php-8.0:
     image: orangehrm/os-dev:php80
+    build: ./php/php80
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -44,6 +47,7 @@ services:
 
   php-8.1:
     image: orangehrm/os-dev:php81
+    build: ./php/php81
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -59,6 +63,7 @@ services:
 
   php-8.2:
     image: orangehrm/os-dev:php82
+    build: ./php/php82
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -72,36 +77,26 @@ services:
     restart: always
     container_name: os_dev_php82
 
-  mysql57:
-    image: mysql:5.7
-    ports:
-      - "${MYSQL_57_PORT}:3306"
+  php-8.3:
+    image: orangehrm/os-dev:php83
+    build: ./php/php83
+    working_dir: ${REMOTE_SRC}
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+      HIST_FILE: /root/.bash_history
     volumes:
-      - mysql-data-57:/var/lib/mysql/
+      - ${LOCAL_SRC}:${REMOTE_SRC}
+      - $HOME/.bash_history:/root/.bash_history
+    depends_on:
+      - nginx
     networks:
       - php-dev
     restart: always
-    container_name: os_dev_mysql57
-
-  mysql56:
-    image: mysql:5.6
-    ports:
-      - "${MYSQL_56_PORT}:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
-    volumes:
-      - mysql-data-56:/var/lib/mysql/
-    networks:
-      - php-dev
-    restart: always
-    container_name: os_dev_mysql56
+    container_name: os_dev_php83
 
   mysql55:
     image: mysql:5.5
     ports:
-      - "${MYSQL_55_PORT}:3306"
+      - "${MYSQL_55_PORT:-3320}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -111,10 +106,36 @@ services:
     restart: always
     container_name: os_dev_mysql55
 
+  mysql56:
+    image: mysql:5.6
+    ports:
+      - "${MYSQL_56_PORT:-3321}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-56:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql56
+
+  mysql57:
+    image: mysql:5.7
+    ports:
+      - "${MYSQL_57_PORT:-3322}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-57:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql57
+
   mysql80:
     image: mysql:8.0
     ports:
-      - "${MYSQL_80_PORT}:3306"
+      - "${MYSQL_80_PORT:-3323}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -124,10 +145,36 @@ services:
     restart: always
     container_name: os_dev_mysql80
 
+  mysql81:
+    image: mysql:8.1
+    ports:
+      - "${MYSQL_81_PORT:-3324}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-81:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql81
+
+  mysql82:
+    image: mysql:8.2
+    ports:
+      - "${MYSQL_82_PORT:-3325}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mysql-data-82:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql82
+
   mariadb55:
     image: mariadb:5.5
     ports:
-      - "${MARIADB_55_PORT}:3306"
+      - "${MARIADB_55_PORT:-3331}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -140,7 +187,7 @@ services:
   mariadb100:
     image: mariadb:10.0
     ports:
-      - "${MARIADB_100_PORT}:3306"
+      - "${MARIADB_100_PORT:-3332}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -153,7 +200,7 @@ services:
   mariadb101:
     image: mariadb:10.1
     ports:
-      - "${MARIADB_101_PORT}:3306"
+      - "${MARIADB_101_PORT:-3333}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -166,7 +213,7 @@ services:
   mariadb102:
     image: mariadb:10.2
     ports:
-      - "${MARIADB_102_PORT}:3306"
+      - "${MARIADB_102_PORT:-3334}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -179,7 +226,7 @@ services:
   mariadb103:
     image: mariadb:10.3
     ports:
-      - "${MARIADB_103_PORT}:3306"
+      - "${MARIADB_103_PORT:-3335}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -192,7 +239,7 @@ services:
   mariadb104:
     image: mariadb:10.4
     ports:
-      - "${MARIADB_104_PORT}:3306"
+      - "${MARIADB_104_PORT:-3336}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -205,7 +252,7 @@ services:
   mariadb105:
     image: mariadb:10.5
     ports:
-      - "${MARIADB_105_PORT}:3306"
+      - "${MARIADB_105_PORT:-3337}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -218,7 +265,7 @@ services:
   mariadb106:
     image: mariadb:10.6
     ports:
-      - "${MARIADB_106_PORT}:3306"
+      - "${MARIADB_106_PORT:-3338}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -231,7 +278,7 @@ services:
   mariadb107:
     image: mariadb:10.7
     ports:
-      - "${MARIADB_107_PORT}:3306"
+      - "${MARIADB_107_PORT:-3339}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -244,7 +291,7 @@ services:
   mariadb108:
     image: mariadb:10.8
     ports:
-      - "${MARIADB_108_PORT}:3306"
+      - "${MARIADB_108_PORT:-3340}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -257,7 +304,7 @@ services:
   mariadb109:
     image: mariadb:10.9
     ports:
-      - "${MARIADB_109_PORT}:3306"
+      - "${MARIADB_109_PORT:-3341}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
@@ -293,12 +340,51 @@ services:
     restart: always
     container_name: os_dev_mariadb1011
 
+  mariadb110:
+    image: mariadb:11.0
+    ports:
+      - "${MARIADB_110_PORT:-3344}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-110:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb110
+
+  mariadb111:
+    image: mariadb:11.1
+    ports:
+      - "${MARIADB_111_PORT:-3345}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-111:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb111
+
+  mariadb112:
+    image: mariadb:11.2
+    ports:
+      - "${MARIADB_112_PORT:-3346}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
+      - mariadb-data-112:/var/lib/mysql/
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb112
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "${PHPMYADMIN_PORT}:80"
+      - "${PHPMYADMIN_PORT:-9092}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112
     networks:
       - php-dev
     restart: always
@@ -309,6 +395,8 @@ volumes:
   mysql-data-56:
   mysql-data-57:
   mysql-data-80:
+  mysql-data-81:
+  mysql-data-82:
   mariadb-data-55:
   mariadb-data-100:
   mariadb-data-101:
@@ -322,6 +410,9 @@ volumes:
   mariadb-data-109:
   mariadb-data-1010:
   mariadb-data-1011:
+  mariadb-data-110:
+  mariadb-data-111:
+  mariadb-data-112:
 
 networks:
   php-dev:

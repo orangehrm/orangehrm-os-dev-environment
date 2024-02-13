@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PROJECT_DIR=$(realpath "$(dirname "$(readlink -f "$0")")"/../)
+
+export COMPOSE_FILE="$PROJECT_DIR/docker-compose.yml"
+export COMPOSE_LEGACY_FILE="$PROJECT_DIR/docker-compose-legacy-services.yml"

@@ -9,7 +9,7 @@ This project will facilitate inbuilt development environment for developers and 
  - Docker
  - Docker compose 
  - Nginx
- - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0, PHP 8.1, PHP 8.2
+ - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0, PHP 8.1, PHP 8.2, PHP 8.3
 
 ### Installation:
  1. Clone this project
@@ -17,56 +17,59 @@ This project will facilitate inbuilt development environment for developers and 
  1. update /etc/hosts file with following line
  __Example:__
  ```bash
- 127.0.0.1	php56 php70 php71 php72 php73 php74 php80 php81 php82
+ 127.0.0.1	php56 php70 php71 php72 php73 php74 php80 php81 php82 php83
  ```
 
  > Read the full guide [here](https://github.com/orangehrm/orangehrm-os-dev-environment/wiki/How-to-setup).
  
- > Note: All `docker-compose` commands should run inside this project root directory
+ > Note: All `docker compose` commands should run inside this project root directory
  
 #### How to up/down containers 
 Up all containers
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Up only development containers 
 ```bash
-docker-compose up -d php-8.1 mysql57
+docker compose up -d php-8.1 mysql57
 ```
  
 Down all container
 ```bash
-docker-compose down
+docker compose down
 ```
 
 Stop all container
 ```bash
-docker-compose stop
+docker compose stop
 ```
 #### Env information 
 
-| PHP Version  | Host | Start command |
-| ------------- | ------------- | ------------- |
-| PHP 8.2  | http://php82  | `$ bash ./scripts/php82` |
-| PHP 8.1  | http://php81  | `$ bash ./scripts/php81` |
-| PHP 8.0  | http://php80  | `$ bash ./scripts/php80` |
-| PHP 7.4  | http://php74  | `$ bash ./scripts/php74` |
-| PHP 7.3  | http://php73  | `$ bash ./scripts/php73` |
-| PHP 7.2  | http://php72  | `$ bash ./scripts/php72` |
-| PHP 7.1  | http://php71  | `$ bash ./scripts/php71` |
-| PHP 7.0  | http://php70  | `$ bash ./scripts/php70` |
-| PHP 5.6  | http://php56  | `$ bash ./scripts/php56` |
+| PHP Version | Host         | Start command            |
+|-------------|--------------|--------------------------|
+| PHP 8.3     | http://php83 | `$ bash ./scripts/php83` |
+| PHP 8.2     | http://php82 | `$ bash ./scripts/php82` |
+| PHP 8.1     | http://php81 | `$ bash ./scripts/php81` |
+| PHP 8.0     | http://php80 | `$ bash ./scripts/php80` |
+| PHP 7.4     | http://php74 | `$ bash ./scripts/php74` |
+| PHP 7.3     | http://php73 | `$ bash ./scripts/php73` |
+| PHP 7.2     | http://php72 | `$ bash ./scripts/php72` |
+| PHP 7.1     | http://php71 | `$ bash ./scripts/php71` |
+| PHP 7.0     | http://php70 | `$ bash ./scripts/php70` |
+| PHP 5.6     | http://php56 | `$ bash ./scripts/php56` |
 
 ### Config & Database
 
-| DB  | Host |User  | Password |
-| --- | ---- |---- | ------- |
-| MySQL 5.5  | mysql55  |root  | root  |
-| MySQL 5.6  | mysql56  |root  | root  |
-| MySQL 5.7  | mysql57  |root  | root  |
-| MySQL 8.0  | mysql80  |root  | root  |
-| MariaDB 5.5  | mariadb55  |root  | root  |
+| DB            | Host        |User  | Password |
+|---------------|-------------|---- | ------- |
+| MySQL 5.5     | mysql55     |root  | root  |
+| MySQL 5.6     | mysql56     |root  | root  |
+| MySQL 5.7     | mysql57     |root  | root  |
+| MySQL 8.0     | mysql80     |root  | root  |
+| MySQL 8.1     | mysql81     |root  | root  |
+| MySQL 8.2     | mysql82     |root  | root  |
+| MariaDB 5.5   | mariadb55   |root  | root  |
 | MariaDB 10.0  | mariadb100  |root  | root  |
 | MariaDB 10.1  | mariadb101  |root  | root  |
 | MariaDB 10.2  | mariadb102  |root  | root  |
@@ -77,21 +80,27 @@ docker-compose stop
 | MariaDB 10.7  | mariadb107  |root  | root  |
 | MariaDB 10.8  | mariadb108  |root  | root  |
 | MariaDB 10.9  | mariadb109  |root  | root  |
-| MariaDB 10.10  | mariadb1010  |root  | root  |
+| MariaDB 10.10 | mariadb1010 |root  | root  |
+| MariaDB 10.11 | mariadb1011 |root  | root  |
+| MariaDB 11.0  | mariadb110  |root  | root  |
+| MariaDB 11.1  | mariadb111  |root  | root  |
+| MariaDB 11.2  | mariadb112  |root  | root  |
+
 
 
 To use the command line clients provided by the containers you can use the following commands:
 
 ```bash
 # MySQL
-docker-compose exec mysql55 mysql -u root -p"root"
+docker compose exec mysql55 mysql -u root -p"root"
 
 # MariaDB
-docker-compose exec mariadb55 mysql -u root -p"root"
+docker compose exec mariadb55 mysql -u root -p"root"
 ```
 
 #### How to browse OrangeHRM
 
+- php 8.3 : http://php83:{PORT}/
 - php 8.2 : http://php82:{PORT}/
 - php 8.1 : http://php81:{PORT}/
 - php 8.0 : http://php80:{PORT}/
@@ -105,9 +114,37 @@ docker-compose exec mariadb55 mysql -u root -p"root"
 > __Note:__ Here __PORT__ is either __NGINX_PORT__ or __NGINX_SSL_PORT__ which are defined in __.env__. When using __NGINX_SSL_PORT__ as the __PORT__ then URL should start with `https` instead of `http`.
 
 #### Run commands in a running container
+__Execute in PHP 8.3:__
+```bash
+docker compose exec php-8.3 bash
+# OR
+docker exec -it os_dev_php83 bash
+```
+
+__Execute in PHP 8.2:__
+```bash
+docker compose exec php-8.2 bash
+# OR
+docker exec -it os_dev_php82 bash
+```
+
+__Execute in PHP 8.1:__
+```bash
+docker compose exec php-8.1 bash
+# OR
+docker exec -it os_dev_php81 bash
+```
+
+__Execute in PHP 8.0:__
+```bash
+docker compose exec php-8.0 bash
+# OR
+docker exec -it os_dev_php80 bash
+```
+
 __Execute in PHP 7.4:__
 ```bash
-docker-compose exec php-7.4 bash
+docker compose exec php-7.4 bash
 # OR
 docker exec -it os_dev_php74 bash
 ```
@@ -135,7 +172,15 @@ docker exec -it os_dev_php70 bash
 #### Build Images
 ```bash
 # Build all images
-docker-compose -f docker-compose.yml -f docker-compose-build.yml build
+docker compose build
 # OR only specific
-docker-compose -f docker-compose.yml -f docker-compose-build.yml build nginx
+docker compose build nginx
+```
+
+#### Legacy Services
+Older containers have been moved to `docker-compose-legacy-services.yml`.
+
+To run these containers, pass the file as an argument using `-f`
+```shell
+docker compose -f docker-compose-legacy-services.yml up -d php-7.1
 ```
