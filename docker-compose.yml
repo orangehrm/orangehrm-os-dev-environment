@@ -2,6 +2,7 @@ version: "3.3"
 services:
   nginx:
     image: orangehrm/os-dev:nginx
+    build: ./server/nginx
     ports:
       - "${NGINX_PORT}:80"
       - "${NGINX_SSL_PORT}:443"
@@ -14,6 +15,7 @@ services:
 
   php-7.4:
     image: orangehrm/os-dev:php74
+    build: ./php/php74
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -29,6 +31,7 @@ services:
 
   php-8.0:
     image: orangehrm/os-dev:php80
+    build: ./php/php80
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -44,6 +47,7 @@ services:
 
   php-8.1:
     image: orangehrm/os-dev:php81
+    build: ./php/php81
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -59,6 +63,7 @@ services:
 
   php-8.2:
     image: orangehrm/os-dev:php82
+    build: ./php/php82
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
@@ -74,6 +79,7 @@ services:
 
   php-8.3:
     image: orangehrm/os-dev:php83
+    build: ./php/php83
     working_dir: ${REMOTE_SRC}
     environment:
       HIST_FILE: /root/.bash_history
