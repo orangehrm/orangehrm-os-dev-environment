@@ -432,7 +432,7 @@ services:
     ports:
       - "${PHPMYADMIN_PORT:-9092}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mysql83,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112,mariadb113
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mysql83,mysql84,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112,mariadb113,mariadb114
     networks:
       - php-dev
     restart: always
