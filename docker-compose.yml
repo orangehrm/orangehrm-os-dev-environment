@@ -184,6 +184,17 @@ services:
     restart: always
     container_name: os_dev_mysql83
 
+  mysql84:
+    image: mysql:8.4
+    ports:
+      - "${MYSQL_84_PORT:-3327}:3306"
+    volumes:
+      - mysql-data-84:/var/lib/mysql
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql84
+
   mariadb55:
     image: mariadb:5.5
     ports:
@@ -405,6 +416,17 @@ services:
     restart: always
     container_name: os_dev_mariadb113
 
+  mariadb114:
+    image: mariadb:11.4
+    ports:
+      - "${MARIADB_114_PORT:-3348}:3306"
+    environment:
+      - mariadb-data-114:/var/lib/mysql
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb114
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -424,6 +446,7 @@ volumes:
   mysql-data-81:
   mysql-data-82:
   mysql-data-83:
+  mysql-data-84:
   mariadb-data-55:
   mariadb-data-100:
   mariadb-data-101:
@@ -441,6 +464,7 @@ volumes:
   mariadb-data-111:
   mariadb-data-112:
   mariadb-data-113:
+  mariadb-data-114:
 
 networks:
   php-dev:
