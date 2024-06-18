@@ -1,4 +1,3 @@
-version: "3.3"
 services:
   nginx:
     image: orangehrm/os-dev:nginx
@@ -183,6 +182,17 @@ services:
       - php-dev
     restart: always
     container_name: os_dev_mysql83
+
+  mysql84:
+    image: mysql:8.4
+    ports:
+      - "${MYSQL_84_PORT:-3327}:3306"
+    volumes:
+      - mysql-data-84:/var/lib/mysql
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mysql84
 
   mariadb55:
     image: mariadb:5.5
@@ -405,12 +415,23 @@ services:
     restart: always
     container_name: os_dev_mariadb113
 
+  mariadb114:
+    image: mariadb:11.4
+    ports:
+      - "${MARIADB_114_PORT:-3348}:3306"
+    environment:
+      - mariadb-data-114:/var/lib/mysql
+    networks:
+      - php-dev
+    restart: always
+    container_name: os_dev_mariadb114
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "${PHPMYADMIN_PORT:-9092}:80"
     environment:
-      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mysql83,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112,mariadb113
+      PMA_HOSTS: mysql55,mysql56,mysql57,mysql80,mysql81,mysql82,mysql83,mysql84,mariadb55,mariadb100,mariadb101,mariadb102,mariadb103,mariadb104,mariadb105,mariadb106,mariadb107,mariadb108,mariadb109,mariadb1010,mariadb1011,mariadb110,mariadb111,mariadb112,mariadb113,mariadb114
     networks:
       - php-dev
     restart: always
@@ -424,6 +445,7 @@ volumes:
   mysql-data-81:
   mysql-data-82:
   mysql-data-83:
+  mysql-data-84:
   mariadb-data-55:
   mariadb-data-100:
   mariadb-data-101:
@@ -441,6 +463,7 @@ volumes:
   mariadb-data-111:
   mariadb-data-112:
   mariadb-data-113:
+  mariadb-data-114:
 
 networks:
   php-dev:
