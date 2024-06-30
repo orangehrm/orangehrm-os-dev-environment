@@ -187,6 +187,8 @@ services:
     image: mysql:8.4
     ports:
       - "${MYSQL_84_PORT:-3327}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
     volumes:
       - mysql-data-84:/var/lib/mysql
     networks:
@@ -420,6 +422,8 @@ services:
     ports:
       - "${MARIADB_114_PORT:-3348}:3306"
     environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PW}
+    volumes:
       - mariadb-data-114:/var/lib/mysql
     networks:
       - php-dev
