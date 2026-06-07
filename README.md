@@ -9,7 +9,7 @@ This project will facilitate inbuilt development environment for developers and 
  - Docker
  - Docker compose 
  - Nginx
- - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0, PHP 8.1, PHP 8.2, PHP 8.3, PHP 8.4
+ - PHP 5.6, PHP 7.0, PHP 7.1, PHP 7.2, PHP 7.3, PHP 7.4, PHP 8.0, PHP 8.1, PHP 8.2, PHP 8.3, PHP 8.4, PHP 8.5
 
 ### Installation:
  1. Clone this project
@@ -17,7 +17,7 @@ This project will facilitate inbuilt development environment for developers and 
  1. update /etc/hosts file with following line
  __Example:__
  ```bash
- 127.0.0.1	php56 php70 php71 php72 php73 php74 php80 php81 php82 php83 php84
+ 127.0.0.1	php56 php70 php71 php72 php73 php74 php80 php81 php82 php83 php84 php85
  ```
 
  > Read the full guide [here](https://github.com/orangehrm/orangehrm-os-dev-environment/wiki/How-to-setup).
@@ -48,6 +48,7 @@ docker compose stop
 
 | PHP Version | Host         | Start command            |
 |-------------|--------------|--------------------------|
+| PHP 8.5     | http://php85 | `$ bash ./scripts/php85` |
 | PHP 8.4     | http://php84 | `$ bash ./scripts/php84` |
 | PHP 8.3     | http://php83 | `$ bash ./scripts/php83` |
 | PHP 8.2     | http://php82 | `$ bash ./scripts/php82` |
@@ -62,30 +63,40 @@ docker compose stop
 
 ### Config & Database
 
-| DB            | Host        |User  | Password |
-|---------------|-------------|---- | ------- |
-| MySQL 5.5     | mysql55     |root  | root  |
-| MySQL 5.6     | mysql56     |root  | root  |
-| MySQL 5.7     | mysql57     |root  | root  |
-| MySQL 8.0     | mysql80     |root  | root  |
-| MySQL 8.1     | mysql81     |root  | root  |
-| MySQL 8.2     | mysql82     |root  | root  |
-| MariaDB 5.5   | mariadb55   |root  | root  |
-| MariaDB 10.0  | mariadb100  |root  | root  |
-| MariaDB 10.1  | mariadb101  |root  | root  |
-| MariaDB 10.2  | mariadb102  |root  | root  |
-| MariaDB 10.3  | mariadb103  |root  | root  |
-| MariaDB 10.4  | mariadb104  |root  | root  |
-| MariaDB 10.5  | mariadb105  |root  | root  |
-| MariaDB 10.6  | mariadb106  |root  | root  |
-| MariaDB 10.7  | mariadb107  |root  | root  |
-| MariaDB 10.8  | mariadb108  |root  | root  |
-| MariaDB 10.9  | mariadb109  |root  | root  |
-| MariaDB 10.10 | mariadb1010 |root  | root  |
-| MariaDB 10.11 | mariadb1011 |root  | root  |
-| MariaDB 11.0  | mariadb110  |root  | root  |
-| MariaDB 11.1  | mariadb111  |root  | root  |
-| MariaDB 11.2  | mariadb112  |root  | root  |
+| DB              | Host        | User | Password |
+|-----------------|-------------|------|----------|
+| MySQL 5.5       | mysql55     | root | root     |
+| MySQL 5.6       | mysql56     | root | root     |
+| MySQL 5.7       | mysql57     | root | root     |
+| MySQL 8.0       | mysql80     | root | root     |
+| MySQL 8.1       | mysql81     | root | root     |
+| MySQL 8.2       | mysql82     | root | root     |
+| MySQL 8.3       | mysql83     | root | root     |
+| MySQL 8.4       | mysql84     | root | root     |
+| MySQL 9.4       | mysql94     | root | root     |
+| MySQL 9.7       | mysql97     | root | root     |
+| MariaDB 5.5     | mariadb55   | root | root     |
+| MariaDB 10.0    | mariadb100  | root | root     |
+| MariaDB 10.1    | mariadb101  | root | root     |
+| MariaDB 10.2    | mariadb102  | root | root     |
+| MariaDB 10.3    | mariadb103  | root | root     |
+| MariaDB 10.4    | mariadb104  | root | root     |
+| MariaDB 10.5    | mariadb105  | root | root     |
+| MariaDB 10.6    | mariadb106  | root | root     |
+| MariaDB 10.7    | mariadb107  | root | root     |
+| MariaDB 10.8    | mariadb108  | root | root     |
+| MariaDB 10.9    | mariadb109  | root | root     |
+| MariaDB 10.10   | mariadb1010 | root | root     |
+| MariaDB 10.11   | mariadb1011 | root | root     |
+| MariaDB 11.0    | mariadb110  | root | root     |
+| MariaDB 11.1    | mariadb111  | root | root     |
+| MariaDB 11.2    | mariadb112  | root | root     |
+| MariaDB 11.3    | mariadb113  | root | root     |
+| MariaDB 11.4    | mariadb114  | root | root     |
+| MariaDB 11.8    | mariadb118  | root | root     |
+| MariaDB 12.0    | mariadb120  | root | root     |
+| MariaDB 12.3    | mariadb123  | root | root     |
+| MariaDB 13.0    | mariadb130  | root | root     |
 
 
 
@@ -101,6 +112,8 @@ docker compose exec mariadb55 mysql -u root -p"root"
 
 #### How to browse OrangeHRM
 
+- php 8.5 : http://php85:{PORT}/
+- php 8.4 : http://php84:{PORT}/
 - php 8.3 : http://php83:{PORT}/
 - php 8.2 : http://php82:{PORT}/
 - php 8.1 : http://php81:{PORT}/
