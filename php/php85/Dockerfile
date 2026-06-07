@@ -23,7 +23,6 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-install -j$(nproc) \
 	    zip \
 	    intl \
-	    opcache \
 	    pdo_mysql \
 	    ldap \
 	# https://github.com/docker-library/php/issues/912
@@ -35,10 +34,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-ENV NODE_VERSION 24
+ENV NODE_VERSION 26
+ENV NVM_VERSION 0.40.5
 
 RUN cd ~ \
-	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash \
+	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
 	&& . $HOME/.nvm/nvm.sh \
 	&& nvm install $NODE_VERSION \
 	&& nvm alias default $NODE_VERSION \
