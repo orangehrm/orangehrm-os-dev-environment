@@ -36,9 +36,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 SHELL ["/bin/bash", "--login", "-c"]
 
 ENV NODE_VERSION 22
+ENV NVM_VERSION 0.40.5
 
 RUN cd ~ \
-	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash \
+	&& curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash \
 	&& . $HOME/.nvm/nvm.sh \
 	&& nvm install $NODE_VERSION \
 	&& nvm alias default $NODE_VERSION \
